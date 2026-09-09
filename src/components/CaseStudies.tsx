@@ -88,7 +88,7 @@ export function CaseStudies() {
           </Reveal>
         </div>
 
-        <Reveal delay={80}>
+        <Reveal variant="scale" delay={80}>
           <div
             ref={scroller}
             onScroll={onScroll}
@@ -97,7 +97,7 @@ export function CaseStudies() {
             {SAMPLE_caseStudies.map((study, i) => (
               <article
                 key={study.title}
-                className="flex w-[85vw] shrink-0 snap-start flex-col overflow-hidden rounded-lg border border-ink-200 bg-white transition-colors duration-300 hover:border-ink-300 hover:shadow-md sm:w-[30rem]"
+                className="card-hover group flex w-[85vw] shrink-0 snap-start flex-col overflow-hidden rounded-lg border border-ink-200 bg-white transition-all duration-300 hover:border-red-600/30 sm:w-[30rem]"
               >
                 <div className="relative aspect-16/9 w-full overflow-hidden">
                   <Image
@@ -105,15 +105,16 @@ export function CaseStudies() {
                     alt={`${study.industry} — ${study.title}`}
                     fill
                     sizes="(max-width: 640px) 85vw, 30rem"
-                    className="object-cover"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
 
                 <div className="flex flex-1 flex-col p-7 sm:p-9">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-red-600">
                     {study.industry}
                   </p>
-                  <h3 className="mt-4 text-2xl font-bold leading-snug text-ink-900">
+                  <h3 className="mt-4 text-2xl font-bold leading-snug text-ink-900 transition-colors duration-200 group-hover:text-red-700">
                     {study.title}
                   </h3>
                   <p className="mt-3.5 text-[14.5px] leading-relaxed text-ink-600">
@@ -125,7 +126,7 @@ export function CaseStudies() {
                       <div key={metric.label}>
                         {/* Red, not neutral — these numbers are the whole
                             point of the card and should win the eye. */}
-                        <dt className="font-display text-2xl font-extrabold text-red-600">
+                        <dt className="font-display text-2xl font-extrabold text-red-600 transition-transform duration-300 group-hover:scale-105">
                           {metric.value}
                         </dt>
                         <dd className="mt-1 text-[11.5px] leading-tight text-ink-500">
@@ -139,7 +140,7 @@ export function CaseStudies() {
                     {study.services.map((service) => (
                       <li
                         key={service}
-                        className="rounded-full bg-ink-100 px-2.5 py-1 text-[11.5px] text-ink-600"
+                        className="rounded-full bg-ink-100 px-2.5 py-1 text-[11.5px] text-ink-600 transition-colors duration-200 group-hover:bg-red-50 group-hover:text-red-700"
                       >
                         {service}
                       </li>

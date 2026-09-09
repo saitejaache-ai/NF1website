@@ -20,20 +20,21 @@ export function Services() {
             return (
               <Reveal
                 key={service.name}
+                variant="scale"
                 delay={Math.min(i, 5) * 60}
                 className={wide ? "sm:col-span-2" : undefined}
               >
                 <article
-                  className={`flex h-full flex-col rounded-lg border border-ink-200 bg-white p-6 transition-all duration-300 hover:border-ink-300 hover:shadow-md ${
+                  className={`card-hover group flex h-full flex-col rounded-lg border border-ink-200 bg-white p-6 transition-all duration-300 hover:border-red-600/30 ${
                     wide ? "lg:p-8" : ""
                   }`}
                 >
-                  <span className="grid h-11 w-11 place-items-center rounded bg-red-50 text-red-600">
-                    <ServiceIcon name={service.icon} className="h-5 w-5" />
+                  <span className="grid h-11 w-11 place-items-center rounded bg-red-50 text-red-600 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white group-hover:shadow-md">
+                    <ServiceIcon name={service.icon} className="h-5 w-5 transition-transform duration-300 group-hover:scale-105" />
                   </span>
 
                   <h3
-                    className={`mt-5 font-bold text-ink-900 ${
+                    className={`mt-5 font-bold text-ink-900 transition-colors duration-200 group-hover:text-red-700 ${
                       wide ? "text-2xl" : "text-lg"
                     }`}
                   >
@@ -51,7 +52,7 @@ export function Services() {
                     {service.points.map((point) => (
                       <li
                         key={point}
-                        className="rounded-full bg-ink-100 px-2.5 py-1 text-[12px] text-ink-600"
+                        className="rounded-full bg-ink-100 px-2.5 py-1 text-[12px] text-ink-600 transition-colors duration-200 group-hover:bg-red-50 group-hover:text-red-700"
                       >
                         {point}
                       </li>

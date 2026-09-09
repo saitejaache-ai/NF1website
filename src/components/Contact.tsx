@@ -20,7 +20,7 @@ export function Contact() {
       <div className="container-page">
         <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
-            <Reveal>
+            <Reveal variant="left">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-red-500">
                 Start a conversation
               </p>
@@ -35,11 +35,11 @@ export function Contact() {
               </p>
             </Reveal>
 
-            <Reveal delay={100}>
+            <Reveal variant="left" delay={100}>
               <div className="mt-10 flex flex-col gap-3 text-[15px]">
                 <a
                   href={`tel:${company.hotline.replace(/[^0-9+]/g, "")}`}
-                  className="group inline-flex w-fit items-center gap-3 break-words text-white transition-colors hover:text-red-500"
+                  className="group inline-flex w-fit items-center gap-3 break-words text-white transition-all hover:translate-x-1 hover:text-red-500"
                 >
                   <span className="text-[12px] uppercase tracking-[0.14em] text-ink-400">
                     Hotline
@@ -48,7 +48,7 @@ export function Contact() {
                 </a>
                 <a
                   href={`mailto:${company.email}`}
-                  className="group inline-flex w-fit items-center gap-3 break-words text-white transition-colors hover:text-red-500"
+                  className="group inline-flex w-fit items-center gap-3 break-words text-white transition-all hover:translate-x-1 hover:text-red-500"
                 >
                   <span className="text-[12px] uppercase tracking-[0.14em] text-ink-400">
                     Email
@@ -60,15 +60,15 @@ export function Contact() {
 
             {/* Full addresses live in <GlobalPresence /> — this is just the
                 nearest-office shortcut so nobody has to scroll back up. */}
-            <Reveal delay={140}>
+            <Reveal variant="left" delay={140}>
               <div className="mt-10 flex flex-wrap gap-2.5">
                 {offices.map((office) => (
                   <a
                     key={office.city}
                     href={`tel:${office.phoneHref}`}
-                    className="rounded border border-white/10 bg-white/5 px-4 py-3 transition-colors hover:bg-white/10"
+                    className="group rounded border border-white/10 bg-white/5 px-4 py-3 transition-all duration-300 hover:border-red-500/40 hover:bg-white/10 hover:shadow-md hover:-translate-y-0.5"
                   >
-                    <span className="block text-[13.5px] font-semibold text-white">
+                    <span className="block text-[13.5px] font-semibold text-white transition-colors group-hover:text-red-400">
                       {office.city}
                       <span className="ml-2 text-[11.5px] font-normal text-ink-400">
                         {office.region}
@@ -83,13 +83,13 @@ export function Contact() {
             </Reveal>
           </div>
 
-          <Reveal delay={80}>
+          <Reveal variant="scale" delay={80}>
             {/* A white card on the black band — everything inside it is styled
                 for a light surface. */}
-            <div className="rounded-lg bg-white p-6 sm:p-8">
+            <div className="rounded-lg bg-white p-6 shadow-2xl transition-all sm:p-8">
               {submitted ? (
                 <div className="flex min-h-96 flex-col items-center justify-center text-center">
-                  <span className="grid h-14 w-14 place-items-center rounded-full bg-red-50 text-red-600">
+                  <span className="grid h-14 w-14 place-items-center rounded-full bg-red-50 text-red-600 animate-pulse-glow">
                     <svg
                       viewBox="0 0 24 24"
                       fill="none"
@@ -166,10 +166,10 @@ export function Contact() {
 
                   <button
                     type="submit"
-                    className="group mt-1 inline-flex items-center justify-center gap-2 rounded bg-red-600 px-7 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-red-700 sm:col-span-2"
+                    className="btn-shimmer group mt-1 inline-flex items-center justify-center gap-2 rounded bg-red-600 px-7 py-4 text-[15px] font-semibold text-white shadow-md shadow-red-600/20 transition-all duration-300 hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/30 hover:-translate-y-0.5 sm:col-span-2"
                   >
                     Schedule a free consultation
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </button>
                 </form>
               )}

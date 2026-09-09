@@ -32,14 +32,14 @@ export function StickyCta() {
       href="#contact"
       aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
-      className={`group fixed bottom-6 right-6 z-40 hidden items-center gap-2.5 rounded-full bg-linear-to-r from-brand-600 to-brand-500 px-5 py-3.5 text-[14.5px] font-medium text-white shadow-[0_16px_44px_-14px_rgba(51,65,240,0.85)] transition-all duration-400 lg:inline-flex ${
+      className={`btn-shimmer group fixed bottom-6 right-6 z-40 hidden items-center gap-2.5 rounded-full bg-red-600 px-5 py-3.5 text-[14.5px] font-semibold text-white shadow-lg shadow-red-600/30 transition-all duration-400 hover:bg-red-700 hover:shadow-xl hover:shadow-red-600/40 hover:-translate-y-1 lg:inline-flex ${
         visible
           ? "pointer-events-auto translate-y-0 opacity-100"
-          : "pointer-events-none translate-y-4 opacity-0"
+          : "pointer-events-none translate-y-6 opacity-0"
       }`}
     >
       Schedule a consultation
-      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
     </a>
   );
 }
