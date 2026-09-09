@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+/*
+ * ── NForceOne design tokens ──────────────────────────────────────────────
+ *
+ * Palette read directly from nforceone.com's compiled stylesheets:
+ *   --e-global-color-vamtam_accent_1 : #C40000   the brand red
+ *   --e-global-color-a9cf77f         : #000000   header / footer black
+ *   --vamtam-menu-color              : #FFFFFF
+ * The neutral ramp below (#1f2124 … #f5f5f1) is also lifted from their own
+ * stylesheet rather than invented, so greys match the live site exactly.
+ *
+ * Type is Inter Tight for headings and Inter for body — the same pairing
+ * their theme declares for h1–h6 and primary text.
+ *
+ * The page is white with a small number of full-bleed black bands for
+ * emphasis. Red is an accent only: it marks the active nav item, primary
+ * buttons and the accented half of a headline. Never a background wash.
+ */
+@theme {
+  /* Brand red */
+  --color-red-700: #a30000;
+  --color-red-600: #c40000; /* brand primary */
+  --color-red-500: #e11414; /* lifted for legibility on black */
+  --color-red-100: #fde8e8;
+  --color-red-50: #fdf2f2;
+
+  /* Neutral ramp — from nforceone.com's stylesheet */
+  --color-ink-950: #000000; /* header, footer, feature bands */
+  --color-ink-900: #1f2124; /* headings */
+  --color-ink-800: #33373d;
+  --color-ink-700: #3f444b;
+  --color-ink-600: #5f6567; /* body copy */
+  --color-ink-500: #69727d; /* muted copy */
+  --color-ink-400: #88909b; /* muted copy on dark */
+  --color-ink-300: #c2cbd2; /* body copy on dark */
+  --color-ink-200: #e3e7ea; /* borders */
+  --color-ink-100: #f5f5f1; /* alternating band */
+  --color-ink-50: #f9fafa;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter-tight), var(--font-inter), sans-serif;
+
+  --animate-marquee: marquee 48s linear infinite;
+  --animate-pulse-ring: pulse-ring 3.5s ease-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Nav is fixed — keep anchored sections clear of it. */
+  scroll-padding-top: 6rem;
+  /* Stops iOS inflating type in landscape. */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--color-ink-600);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.022em;
+}
+
+::selection {
+  background-color: var(--color-red-600);
+  color: #fff;
+}
+
+/* Visible focus for keyboard users, suppressed for mouse clicks. */
+:focus-visible {
+  outline: 2px solid var(--color-red-600);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/*
+ * Page gutter. Wider than a typical 1280px cap so large monitors don't get
+ * a narrow column stranded in the middle, with gutters that grow by
+ * breakpoint instead of a single fixed inset.
+ */
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 90rem;
+  padding-inline: 1.25rem;
+}
+@media (width >= 40rem) {
+  .container-page {
+    padding-inline: 2rem;
+  }
+}
+@media (width >= 64rem) {
+  .container-page {
+    padding-inline: 3rem;
+  }
+}
+@media (width >= 96rem) {
+  .container-page {
+    padding-inline: 4rem;
+  }
+}
+
+/* Scroll reveal — driven by IntersectionObserver in <Reveal>. */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
