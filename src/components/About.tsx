@@ -58,7 +58,7 @@ export function About() {
             </Reveal>
           </div>
         </div>
-
+//comment
         <Reveal>
           <p className="mt-16 text-[13px] text-ink-500">
             Our culture spells itself out —{" "}
